@@ -11,7 +11,8 @@ app.use(express.json());
 
 app.use('/api/1.0', require('./app/routes'));
 
-//ddbConnect();
+dbConnect();
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

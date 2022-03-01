@@ -1,17 +1,24 @@
 const { httpError } = require('../helpers/handleError');
-const userModel = requre ('../models/users');
+const userModel = require('../models/users');
 
 
 const getItem = (req, res) => {
     res.send({ item: 1 });
 }
 
-const getItems = (req, res) => {
-    res.send({ list: [1, 2, 3] });
+const getItems = async (req, res) => {
+    try {
+        const listAll = await userModel.find({});
+        res.send({ data: listAll });
+    }
+    catch (err) {
+        httpError(res, err);
+    }
 }
 const addItem = async (req, res) => {
     try {
         const resDetail = await userModel.create(req.body);
+        res.send({ data: resDetail });
     }
     catch (err) {
         httpError(res, err);
