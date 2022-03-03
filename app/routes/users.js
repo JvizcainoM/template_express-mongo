@@ -3,14 +3,14 @@ const router = express.Router();
 const { validateToken } = require('../middleware/userValidation');
 const { getItem, getItems, addItem, updateItem, deleteItem } = require('../controllers/users');
 
-router.get('/', validateToken, getItems);
+router.get('/', getItems);
 
-router.get('/:id', validateToken, getItem);
+router.get('/:id', getItem);
 
-router.post('/', validateToken, addItem);
+router.post('/', addItem);
 
-router.patch('/:id', validateToken, updateItem);
+router.put('/:id', updateItem);
 
-router.delete('/:id', validateToken, deleteItem);
+router.delete('/:id', deleteItem);
 
 module.exports = router;
