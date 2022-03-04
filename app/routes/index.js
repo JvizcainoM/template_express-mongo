@@ -1,7 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const fs = require('fs');
-const { modelName } = require('../models/users');
 
 const pathRouter = `${__dirname}`;
 
@@ -13,12 +11,17 @@ fs.readdirSync(pathRouter).filter(file => {
 
     if (!skip) {
         router.use(`/${fileNameWithoutExtension}`, require(`./${fileNameWithoutExtension}`));
-        console.log('Load route ---->', fileNameWithoutExtension);
+        console.log('Loaded route ---->', fileNameWithoutExtension);
     }
 });
+
+router.get('/', (req, res) => {
+    res.sendFile('login.html', { root: './public' });
+});
+
 router.get('*', (req, res) => {
     res.status(404).json({
-        message: 'Not found'
+        message: 'Not found',
     });
 });
 module.exports = router;

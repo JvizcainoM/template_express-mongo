@@ -7,12 +7,11 @@ const dbConnect = () => {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }, (err, res) => {
-        console.log('Mongo');
         if (err) {
             console.log(err);
         }
         else {
-            console.log('*** DB Successfully connected. ***');
+            console.log('*** MongoDB successfully connected. ***');
         }
     });
 }
