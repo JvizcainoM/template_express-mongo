@@ -4,8 +4,8 @@ const cors = require('cors');
 const app = express();
 const http = require('http');
 
-const { initSocket } = require('./config/socket');
-const { dbConnect } = require('./config/mongo');
+const { socketConnection } = require('./config/socket.js');
+const { dbConnection } = require('./config/mongo');
 
 const PORT = process.env.PORT || 3000;
 
@@ -18,9 +18,8 @@ app.use('/api/1.0', require('./app/routes'));
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-initSocket(io);
-
-dbConnect();
+socketConnection(io);
+dbConnection();
 
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

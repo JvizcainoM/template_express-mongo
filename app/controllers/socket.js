@@ -1,3 +1,6 @@
+function onConnect(socket) {
+    console.log(`${socket.id} connected`);
+}
 
 function onDisconnect(socket) {
     return () => {
@@ -5,4 +8,4 @@ function onDisconnect(socket) {
     }
 }
 
-module.exports = { onDisconnect };
+module.exports = { onConnect, onDisconnect };

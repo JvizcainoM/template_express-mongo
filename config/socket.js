@@ -1,12 +1,14 @@
-const { onDisconnect, onConnect, onMessage } = require('../app/controllers/socket');
+const { onDisconnect, onConnect } = require('../app/controllers/socket');
 
-function initSocket(io) {
+function socketConnection(io) {
 
     io.on('connection', (socket) => {
-        
-        console.log(`${socket.id} connected`);
+        onConnect(socket);
+
         socket.on('disconnect', onDisconnect(socket));
     });
+    
+    console.log('] Loaded +> socket.io');
 }
 
-module.exports = { initSocket };
+module.exports = { socketConnection };
